@@ -95,9 +95,26 @@ public class FilmFeedManager {
         return filmList;
     }
 
-    // наивная реализация
+
+    // удаляет элемент из массива по id, возвращает неизмененный массив, если id не существует
+
     public void removeById(int id) {
-        int length = films.length - 1;
+        boolean ifId = false;
+        int length;
+
+        for (FilmUnit item : films) {
+            if (item.getId() == id) {
+            ifId = true;
+            break;
+        }
+        }
+
+        if (ifId) {
+            length = films.length - 1;
+        }
+        else {
+            length = films.length;
+        }
         FilmUnit[] tmp = new FilmUnit[length];
         int index = 0;
         for (FilmUnit item : films) {

@@ -52,15 +52,15 @@ public class FilmFeedManagerDefaultTest {
         assertArrayEquals(expected, actual);
     }
 
-    @Disabled
+
     @Test
     public void shouldNotRemoveIfNotExists() {
-        int idToRemove = 5;
+        int idToRemove = 15;
 
         manager.removeById(idToRemove);
 
         FilmUnit[] actual = manager.getAll();
-        FilmUnit[] expected = new FilmUnit[]{third, second, first};
+        FilmUnit[] expected = new FilmUnit[]{twelfth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, first};
 
         assertArrayEquals(expected, actual);
     }
