@@ -1,10 +1,8 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.FilmUnit;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class FilmFeedManagerDefaultTest {
@@ -69,7 +67,7 @@ public class FilmFeedManagerDefaultTest {
     public void shouldGetFilmFeed() {
 
         FilmUnit[] actual = manager.getFilmList();
-        FilmUnit[] expected = new FilmUnit[] {twelfth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third};
+        FilmUnit[] expected = new FilmUnit[]{twelfth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third};
 
         assertArrayEquals(expected, actual);
     }

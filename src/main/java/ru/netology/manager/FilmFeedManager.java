@@ -47,7 +47,7 @@ public class FilmFeedManager {
 
     // отдает список всех фильмов согласно фильтру по жанру
 
-    public  FilmUnit[] getFilmByGenre() {
+    public FilmUnit[] getFilmByGenre() {
         int length = films.length;
         FilmUnit[] list = getAll();
         FilmUnit[] filmsByGenre = new FilmUnit[length];
@@ -104,15 +104,14 @@ public class FilmFeedManager {
 
         for (FilmUnit item : films) {
             if (item.getId() == id) {
-            ifId = true;
-            break;
-        }
+                ifId = true;
+                break;
+            }
         }
 
         if (ifId) {
             length = films.length - 1;
-        }
-        else {
+        } else {
             length = films.length;
         }
         FilmUnit[] tmp = new FilmUnit[length];
