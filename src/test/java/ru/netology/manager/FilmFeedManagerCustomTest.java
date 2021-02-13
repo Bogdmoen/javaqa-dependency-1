@@ -36,8 +36,8 @@ class FilmFeedManagerCustomTest {
         manager.add(fifth);
         manager.add(sixth);
 
-        FilmUnit[] expected = manager.getFilmList();
-        FilmUnit[] actual = new FilmUnit[]{sixth, fifth, forth, third, second};
+        FilmUnit[] actual = manager.getFilmList();
+        FilmUnit[] expected = new FilmUnit[]{sixth, fifth, forth, third, second};
 
         assertArrayEquals(expected, actual);
     }
@@ -59,8 +59,8 @@ class FilmFeedManagerCustomTest {
         manager.add(fifth);
         manager.add(sixth);
 
-        FilmUnit[] expected = manager.getFilmList();
-        FilmUnit[] actual = new FilmUnit[]{sixth, fifth, first};
+        FilmUnit[] actual = manager.getFilmList();
+        FilmUnit[] expected = new FilmUnit[]{sixth, fifth, first};
 
         assertArrayEquals(expected, actual);
 
