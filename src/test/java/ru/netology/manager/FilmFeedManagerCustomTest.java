@@ -5,7 +5,7 @@ import ru.netology.domain.FilmUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FilmFeedManagerTestCustom {
+class FilmFeedManagerCustomTest {
 
     FilmFeedManager manager = new FilmFeedManager(5, 44);
     private FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");

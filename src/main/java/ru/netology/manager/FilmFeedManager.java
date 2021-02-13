@@ -25,11 +25,8 @@ public class FilmFeedManager {
         // создаём новый массив размером на единицу больше
         int length = films.length + 1;
         FilmUnit[] tmp = new FilmUnit[length];
-        // itar + tab
+
         // копируем поэлементно
-        // for (int i = 0; i < films.length; i++) {
-        //   tmp[i] = films[i];
-        // }
         System.arraycopy(films, 0, tmp, 0, films.length);
         // кладём последним наш элемент
         int lastIndex = tmp.length - 1;

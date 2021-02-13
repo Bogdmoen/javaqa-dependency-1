@@ -7,7 +7,7 @@ import ru.netology.domain.FilmUnit;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class FilmFeedManagerTestDefault {
+public class FilmFeedManagerDefaultTest {
 
     FilmFeedManager manager = new FilmFeedManager();
     private FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
