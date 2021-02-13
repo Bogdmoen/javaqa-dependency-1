@@ -1,16 +1,16 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.PurchaseItem;
-import ru.netology.manager.CartManager;
+import ru.netology.domain.FilmUnit;
+import ru.netology.manager.FilmFeedManager;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class CartManagerTest {
-    private CartManager manager = new CartManager();
-    private PurchaseItem first = new PurchaseItem(1, 1, "first", 1, 1);
-    private PurchaseItem second = new PurchaseItem(2, 2, "second", 1, 1);
-    private PurchaseItem third = new PurchaseItem(3, 3, "third", 1, 1);
+public class FilmFeedManagerTest {
+    private FilmFeedManager manager = new FilmFeedManager();
+    private FilmUnit first = new FilmUnit(1, 1, "first", 1, 1);
+    private FilmUnit second = new FilmUnit(2, 2, "second", 1, 1);
+    private FilmUnit third = new FilmUnit(3, 3, "third", 1, 1);
 
     @BeforeEach
     public void setUp() {
@@ -24,8 +24,8 @@ public class CartManagerTest {
         int idToRemove = 1;
         manager.removeById(idToRemove);
 
-        PurchaseItem[] actual = manager.getAll();
-        PurchaseItem[] expected = new PurchaseItem[]{third, second};
+        FilmUnit[] actual = manager.getAll();
+        FilmUnit[] expected = new FilmUnit[]{third, second};
 
 //    assertEquals(expected, actual);
         assertArrayEquals(expected, actual);
@@ -38,8 +38,8 @@ public class CartManagerTest {
 
         manager.removeById(idToRemove);
 
-        PurchaseItem[] actual = manager.getAll();
-        PurchaseItem[] expected = new PurchaseItem[]{third, second, first};
+        FilmUnit[] actual = manager.getAll();
+        FilmUnit[] expected = new FilmUnit[]{third, second, first};
 
         assertArrayEquals(expected, actual);
     }

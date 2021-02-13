@@ -1,49 +1,49 @@
 package ru.netology.manager;
 
-import ru.netology.domain.PurchaseItem;
+import ru.netology.domain.FilmUnit;
 
-public class CartManager {
-    private PurchaseItem[] items = new PurchaseItem[0];
+public class FilmFeedManager {
+    private FilmUnit[] films = new FilmUnit[0];
 
-    public void add(PurchaseItem item) {
+    public void add(FilmUnit item) {
         // создаём новый массив размером на единицу больше
-        int length = items.length + 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
+        int length = films.length + 1;
+        FilmUnit[] tmp = new FilmUnit[length];
         // itar + tab
         // копируем поэлементно
-        // for (int i = 0; i < items.length; i++) {
-        //   tmp[i] = items[i];
+        // for (int i = 0; i < films.length; i++) {
+        //   tmp[i] = films[i];
         // }
-        System.arraycopy(items, 0, tmp, 0, items.length);
+        System.arraycopy(films, 0, tmp, 0, films.length);
         // кладём последним наш элемент
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = item;
-        items = tmp;
+        films = tmp;
     }
 
-    public PurchaseItem[] getAll() {
-        PurchaseItem[] result = new PurchaseItem[items.length];
+    public FilmUnit[] getAll() {
+        FilmUnit[] result = new FilmUnit[films.length];
         // перебираем массив в прямом порядке
         // но кладём в результаты в обратном
         for (int i = 0; i < result.length; i++) {
-            int index = items.length - i - 1;
-            result[i] = items[index];
+            int index = films.length - i - 1;
+            result[i] = films[index];
         }
         return result;
     }
 
     // наивная реализация
     public void removeById(int id) {
-        int length = items.length - 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
+        int length = films.length - 1;
+        FilmUnit[] tmp = new FilmUnit[length];
         int index = 0;
-        for (PurchaseItem item : items) {
+        for (FilmUnit item : films) {
             if (item.getId() != id) {
                 tmp[index] = item;
                 index++;
             }
         }
         // меняем наши элементы
-        items = tmp;
+        films = tmp;
     }
 }
