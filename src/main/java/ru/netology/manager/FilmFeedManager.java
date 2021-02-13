@@ -70,7 +70,7 @@ public class FilmFeedManager {
 
     public FilmUnit[] getFilmList() {
         int size = elementsLimit;
-        int length = films.length;
+        int length;
         FilmUnit[] list;
 
         if (filterGenreId > 0) {
@@ -79,9 +79,17 @@ public class FilmFeedManager {
             list = getAll();
         }
 
-        if (list.length > size) {
-            length = size;
+        int index = 0;
+        for (FilmUnit film : list) {
+            if (film == null) {
+                break;
+            }
+            if (index < size) {
+                index++;
+            }
+
         }
+        length = index;
 
         FilmUnit[] filmList = new FilmUnit[length];
 
