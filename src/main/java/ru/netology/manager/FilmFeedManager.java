@@ -111,18 +111,20 @@ public class FilmFeedManager {
 
         if (ifId) {
             length = films.length - 1;
-        } else {
-            length = films.length;
-        }
-        FilmUnit[] tmp = new FilmUnit[length];
-        int index = 0;
-        for (FilmUnit item : films) {
-            if (item.getId() != id) {
-                tmp[index] = item;
-                index++;
+
+            FilmUnit[] tmp = new FilmUnit[length];
+            int index = 0;
+            for (FilmUnit item : films) {
+                if (item.getId() != id) {
+                    tmp[index] = item;
+                    index++;
+                }
             }
+            // меняем наши элементы
+            films = tmp;
         }
-        // меняем наши элементы
-        films = tmp;
+        else {
+            System.out.println("cannot delete, id is not present");
+        }
     }
 }
