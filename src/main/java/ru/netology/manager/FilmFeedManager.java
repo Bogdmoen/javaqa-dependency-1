@@ -3,12 +3,14 @@ package ru.netology.manager;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.FilmUnit;
+import ru.netology.repository.FilmsRepository;
 
 @Data
 @NoArgsConstructor
 
 public class FilmFeedManager {
-    private FilmUnit[] films = new FilmUnit[0];
+    private FilmsRepository repository;
+
     private int elementsLimit = 10; // определяет максимальное количество фильмов в блоке по умолчанию 10
     private int filterGenreId = 0;  // фильтр жанра, по умолчанию 0
 
@@ -21,20 +23,16 @@ public class FilmFeedManager {
         this.elementsLimit = elementsLimit;
     }
 
-    public void add(FilmUnit item) {
-        // создаём новый массив размером на единицу больше
-        int length = films.length + 1;
-        FilmUnit[] tmp = new FilmUnit[length];
+    public FilmFeedManager(FilmsRepository repository) {
+        this.repository = repository;
+    }
 
-        // копируем поэлементно
-        System.arraycopy(films, 0, tmp, 0, films.length);
-        // кладём последним наш элемент
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        films = tmp;
+    public void add(FilmUnit film) {
+        repository.save(film);
     }
 
     public FilmUnit[] getAll() {
+        FilmUnit[] films = repository.findAll();
         FilmUnit[] result = new FilmUnit[films.length];
         // перебираем массив в прямом порядке
         // но кладём в результаты в обратном
@@ -48,6 +46,7 @@ public class FilmFeedManager {
     // отдает список всех фильмов согласно фильтру по жанру
 
     public FilmUnit[] getFilmByGenre() {
+        FilmUnit[] films = repository.findAll();
         int length = films.length;
         FilmUnit[] list = getAll();
         FilmUnit[] filmsByGenre = new FilmUnit[length];
@@ -99,32 +98,6 @@ public class FilmFeedManager {
     // удаляет элемент из массива по id, возвращает неизмененный массив, если id не существует
 
     public void removeById(int id) {
-        boolean ifId = false;
-        int length;
-
-        for (FilmUnit item : films) {
-            if (item.getId() == id) {
-                ifId = true;
-                break;
-            }
-        }
-
-        if (ifId) {
-            length = films.length - 1;
-
-            FilmUnit[] tmp = new FilmUnit[length];
-            int index = 0;
-            for (FilmUnit item : films) {
-                if (item.getId() != id) {
-                    tmp[index] = item;
-                    index++;
-                }
-            }
-            // меняем наши элементы
-            films = tmp;
-        }
-        else {
-            System.out.println("cannot delete, id is not present");
-        }
+       repository.removeById(id);
     }
 }
