@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class FilmUnit {
     private int id;
-    private int productId;
-    private String productName;
-    private int productPrice;
-    private int count;
+    private int filmId;
+    private String name;
+    private int genreId;
+    private String imageUrl;
+    private String releaseDate;
 }

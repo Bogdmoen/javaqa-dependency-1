@@ -7,10 +7,11 @@ import ru.netology.manager.FilmFeedManager;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class FilmFeedManagerTest {
-    private FilmFeedManager manager = new FilmFeedManager();
-    private FilmUnit first = new FilmUnit(1, 1, "first", 1, 1);
-    private FilmUnit second = new FilmUnit(2, 2, "second", 1, 1);
-    private FilmUnit third = new FilmUnit(3, 3, "third", 1, 1);
+
+    FilmFeedManager manager = new FilmFeedManager();
+    FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
+    FilmUnit second = new FilmUnit(2, 2, "second", 44, "url", "date");
+    FilmUnit third = new FilmUnit(3, 3, "third", 44, "url", "date");
 
     @BeforeEach
     public void setUp() {
