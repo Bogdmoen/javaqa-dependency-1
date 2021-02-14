@@ -16,7 +16,7 @@ class FilmsRepositoryTest {
     FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
 
     @Test
-    void shouldSave() {
+    public void shouldSave() {
 
         repository.save(first);
         repository.save(second);
@@ -31,7 +31,32 @@ class FilmsRepositoryTest {
 
 
     @Test
-    void shouldRemoveById() {
+    public void shouldFindById() {
+        repository.save(first);
+        repository.save(second);
+        repository.save(third);
+        repository.save(forth);
+
+        FilmUnit[] actual = repository.findById(4);
+        FilmUnit[] expected = new FilmUnit[] {forth};
+
+        assertArrayEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldNotFindNonExistentId() {
+
+        repository.save(first);
+
+        FilmUnit[] actual = repository.findById(2);
+        FilmUnit[] expected = null;
+
+        assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    public void shouldRemoveById() {
 
         repository.save(first);
         repository.save(second);
@@ -47,7 +72,7 @@ class FilmsRepositoryTest {
     }
 
     @Test
-    void shouldNotRemoveNonExistedId() {
+    public void shouldNotRemoveNonExistedId() {
 
         repository.save(first);
         repository.save(second);
@@ -60,6 +85,18 @@ class FilmsRepositoryTest {
 
         assertArrayEquals(expected, actual);
 
+    }
+
+    @Test
+    public void shouldRemoveAll() {
+
+        repository.save(first);
+        repository.save(second);
+
+        FilmUnit[] actual = repository.removeAll();
+        FilmUnit[] expected = new FilmUnit[0];
+
+        assertArrayEquals(expected, actual);
     }
 
 }

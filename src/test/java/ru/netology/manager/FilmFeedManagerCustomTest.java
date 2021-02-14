@@ -1,40 +1,37 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.FilmUnit;
+import ru.netology.repository.FilmsRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 
-class FilmFeedManagerCustomTest {
 
-    FilmFeedManager manager = new FilmFeedManager(5, 44);
-    private FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
-    private FilmUnit second = new FilmUnit(2, 2, "first", 12, "url", "date");
-    private FilmUnit third = new FilmUnit(3, 3, "first", 5, "url", "date");
-    private FilmUnit forth = new FilmUnit(4, 3, "first", 19, "url", "date");
-    private FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
-    private FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
-    private FilmUnit seventh = new FilmUnit(7, 3, "first", 50, "url", "date");
-    private FilmUnit eighth = new FilmUnit(8, 3, "first", 44, "url", "date");
-    private FilmUnit ninth = new FilmUnit(9, 3, "first", 44, "url", "date");
-    private FilmUnit tenth = new FilmUnit(10, 3, "first", 46, "url", "date");
+
+@ExtendWith(MockitoExtension.class)
+public class FilmFeedManagerCustomTest {
+    @Mock
+    private FilmsRepository repository;
+    @InjectMocks
+    private FilmFeedManager manager = new FilmFeedManager(5, 44);
 
     @Test
-    void shouldGetFilmListWithCustomLimit() {
-        FilmFeedManager manager = new FilmFeedManager(5);
+   public void shouldGetFilmListWithCustomLimit() {
+
         FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
-        FilmUnit second = new FilmUnit(2, 2, "first", 12, "url", "date");
-        FilmUnit third = new FilmUnit(3, 3, "first", 5, "url", "date");
-        FilmUnit forth = new FilmUnit(4, 3, "first", 19, "url", "date");
+        FilmUnit second = new FilmUnit(2, 2, "first", 44, "url", "date");
+        FilmUnit third = new FilmUnit(3, 3, "first", 44, "url", "date");
+        FilmUnit forth = new FilmUnit(4, 3, "first", 44, "url", "date");
         FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
         FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
 
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(forth);
-        manager.add(fifth);
-        manager.add(sixth);
+        FilmUnit[] returned = new FilmUnit[] {first, second, third, forth, fifth, sixth};
+        doReturn(returned).when(repository).findAll();
 
         FilmUnit[] expected = manager.getFilmList();
         FilmUnit[] actual = new FilmUnit[]{sixth, fifth, forth, third, second};
@@ -43,8 +40,8 @@ class FilmFeedManagerCustomTest {
     }
 
     @Test
-    void shouldGetFilmListWithGenreFilter() {
-        FilmFeedManager manager = new FilmFeedManager(5, 44);
+    public void shouldGetFilmListWithGenreFilter() {
+
         FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
         FilmUnit second = new FilmUnit(2, 2, "first", 12, "url", "date");
         FilmUnit third = new FilmUnit(3, 3, "first", 5, "url", "date");
@@ -52,12 +49,8 @@ class FilmFeedManagerCustomTest {
         FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
         FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
 
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(forth);
-        manager.add(fifth);
-        manager.add(sixth);
+        FilmUnit[] returned = new FilmUnit[] {first, second, third, forth, fifth, sixth};
+        doReturn(returned).when(repository).findAll();
 
         FilmUnit[] expected = manager.getFilmList();
         FilmUnit[] actual = new FilmUnit[]{sixth, fifth, first};

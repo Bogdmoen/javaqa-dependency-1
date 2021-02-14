@@ -11,7 +11,6 @@ public class FilmsRepository {
 
     private FilmUnit[] films = new FilmUnit[0];
 
-
     public void save (FilmUnit film) {
         int length = films.length +1;
         FilmUnit[] tmp = new FilmUnit[length];
@@ -26,19 +25,11 @@ public class FilmsRepository {
     }
 
     public void removeById(int id) {
-        boolean ifId = false;
+
+        FilmUnit[] idToRemove = findById(id);
         int length;
-
-        for (FilmUnit item : films) {
-            if (item.getId() == id) {
-                ifId = true;
-                break;
-            }
-        }
-
-        if (ifId) {
+        if (idToRemove != null) {
             length = films.length - 1;
-
             FilmUnit[] tmp = new FilmUnit[length];
             int index = 0;
             for (FilmUnit item : films) {
@@ -47,12 +38,37 @@ public class FilmsRepository {
                     index++;
                 }
             }
-            // меняем наши элементы
+
             films = tmp;
         }
         else {
             System.out.println("cannot delete, id is not present");
         }
+    }
+
+    public FilmUnit[] findById(int id) {
+        boolean ifId = false;
+        FilmUnit [] result = new FilmUnit[1];
+        for (FilmUnit item : films) {
+            if (item.getId() == id) {
+                ifId = true;
+                result[0] = item;
+                break;
+            }
+        }
+        if (ifId) {
+            return result;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public FilmUnit [] removeAll() {
+        FilmUnit[] result = new FilmUnit[0];
+        films = result;
+
+        return result;
     }
 }
 

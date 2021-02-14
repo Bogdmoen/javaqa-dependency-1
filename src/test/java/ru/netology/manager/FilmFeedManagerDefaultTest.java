@@ -2,12 +2,24 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.FilmUnit;
+import ru.netology.repository.FilmsRepository;
+
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.doReturn;
 
+
+@ExtendWith(MockitoExtension.class)
 public class FilmFeedManagerDefaultTest {
-
-    FilmFeedManager manager = new FilmFeedManager();
+    @Mock
+    private FilmsRepository repository;
+    @InjectMocks
+    private FilmFeedManager manager;
     private FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
     private FilmUnit second = new FilmUnit(2, 2, "first", 44, "url", "date");
     private FilmUnit third = new FilmUnit(3, 3, "first", 44, "url", "date");
@@ -21,50 +33,10 @@ public class FilmFeedManagerDefaultTest {
     private FilmUnit eleventh = new FilmUnit(11, 3, "first", 45, "url", "date");
     private FilmUnit twelfth = new FilmUnit(12, 3, "first", 44, "url", "date");
 
-
-    @BeforeEach
-    public void setUp() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(forth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-        manager.add(eleventh);
-        manager.add(twelfth);
-    }
-
-    @Test
-    public void shouldRemoveIfExists() {
-        int idToRemove = 4;
-        manager.removeById(idToRemove);
-
-        FilmUnit[] actual = manager.getAll();
-        FilmUnit[] expected = new FilmUnit[]{twelfth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, third, second, first};
-
-
-        assertArrayEquals(expected, actual);
-    }
-
-
-    @Test
-    public void shouldNotRemoveIfNotExists() {
-        int idToRemove = 15;
-
-        manager.removeById(idToRemove);
-
-        FilmUnit[] actual = manager.getAll();
-        FilmUnit[] expected = new FilmUnit[]{twelfth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third, second, first};
-
-        assertArrayEquals(expected, actual);
-    }
-
     @Test
     public void shouldGetFilmFeed() {
+        FilmUnit[] returned = new FilmUnit[] {first, second, third, forth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth};
+        doReturn(returned).when(repository).findAll();
 
         FilmUnit[] actual = manager.getFilmList();
         FilmUnit[] expected = new FilmUnit[]{twelfth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, forth, third};
