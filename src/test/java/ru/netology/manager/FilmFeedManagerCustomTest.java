@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FilmFeedManagerCustomTest {
 
-    FilmFeedManager manager = new FilmFeedManager(5, 44);
     private FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
     private FilmUnit second = new FilmUnit(2, 2, "first", 12, "url", "date");
     private FilmUnit third = new FilmUnit(3, 3, "first", 5, "url", "date");
@@ -22,12 +21,6 @@ class FilmFeedManagerCustomTest {
     @Test
     void shouldGetFilmListWithCustomLimit() {
         FilmFeedManager manager = new FilmFeedManager(5);
-        FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
-        FilmUnit second = new FilmUnit(2, 2, "first", 12, "url", "date");
-        FilmUnit third = new FilmUnit(3, 3, "first", 5, "url", "date");
-        FilmUnit forth = new FilmUnit(4, 3, "first", 19, "url", "date");
-        FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
-        FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
 
         manager.add(first);
         manager.add(second);
@@ -45,12 +38,6 @@ class FilmFeedManagerCustomTest {
     @Test
     void shouldGetFilmListWithGenreFilter() {
         FilmFeedManager manager = new FilmFeedManager(5, 44);
-        FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
-        FilmUnit second = new FilmUnit(2, 2, "first", 12, "url", "date");
-        FilmUnit third = new FilmUnit(3, 3, "first", 5, "url", "date");
-        FilmUnit forth = new FilmUnit(4, 3, "first", 19, "url", "date");
-        FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
-        FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
 
         manager.add(first);
         manager.add(second);
@@ -65,4 +52,21 @@ class FilmFeedManagerCustomTest {
         assertArrayEquals(expected, actual);
 
     }
+
+    @Test
+    public void shouldGetFilmFeedBelowLimit() {
+        FilmFeedManager manager = new FilmFeedManager(5);
+
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+
+        FilmUnit[] actual = manager.getFilmList();
+        FilmUnit[] expected = new FilmUnit[]{tenth, ninth, eighth, seventh};
+
+        assertArrayEquals(expected, actual);
+    }
+
+
 }
