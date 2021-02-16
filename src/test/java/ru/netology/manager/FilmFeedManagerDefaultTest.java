@@ -45,4 +45,18 @@ public class FilmFeedManagerDefaultTest {
     }
 
 
+    @Test
+    public void shouldGetFilmFeedBelowLimit() {
+        FilmUnit[] returned = new FilmUnit[] {tenth, eleventh, twelfth};
+        doReturn(returned).when(repository).findAll();
+
+        FilmUnit[] actual = manager.getFilmList();
+        FilmUnit[] expected = new FilmUnit[]{twelfth, eleventh, tenth};
+
+        assertArrayEquals(expected, actual);
+    }
+
+
+
+
 }

@@ -20,15 +20,16 @@ public class FilmFeedManagerCustomTest {
     @InjectMocks
     private FilmFeedManager manager = new FilmFeedManager(5, 44);
 
+    FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
+    FilmUnit second = new FilmUnit(2, 2, "first", 44, "url", "date");
+    FilmUnit third = new FilmUnit(3, 3, "first", 44, "url", "date");
+    FilmUnit forth = new FilmUnit(4, 3, "first", 44, "url", "date");
+    FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
+    FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
+
     @Test
    public void shouldGetFilmListWithCustomLimit() {
 
-        FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
-        FilmUnit second = new FilmUnit(2, 2, "first", 44, "url", "date");
-        FilmUnit third = new FilmUnit(3, 3, "first", 44, "url", "date");
-        FilmUnit forth = new FilmUnit(4, 3, "first", 44, "url", "date");
-        FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
-        FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
 
         FilmUnit[] returned = new FilmUnit[] {first, second, third, forth, fifth, sixth};
         doReturn(returned).when(repository).findAll();
@@ -42,13 +43,6 @@ public class FilmFeedManagerCustomTest {
     @Test
     public void shouldGetFilmListWithGenreFilter() {
 
-        FilmUnit first = new FilmUnit(1, 1, "first", 44, "url", "date");
-        FilmUnit second = new FilmUnit(2, 2, "first", 12, "url", "date");
-        FilmUnit third = new FilmUnit(3, 3, "first", 5, "url", "date");
-        FilmUnit forth = new FilmUnit(4, 3, "first", 19, "url", "date");
-        FilmUnit fifth = new FilmUnit(5, 3, "first", 44, "url", "date");
-        FilmUnit sixth = new FilmUnit(6, 3, "first", 44, "url", "date");
-
         FilmUnit[] returned = new FilmUnit[] {first, second, third, forth, fifth, sixth};
         doReturn(returned).when(repository).findAll();
 
@@ -58,4 +52,7 @@ public class FilmFeedManagerCustomTest {
         assertArrayEquals(expected, actual);
 
     }
+
+
+
 }
